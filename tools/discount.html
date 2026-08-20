@@ -1,11 +1,134 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Discount Calculator — Free Online Tool | QuickTools</title><meta name="description" content="Find sale prices and savings instantly."><link rel="canonical" href="https://quicktools.net/tools/discount.html">
-<meta property="og:title" content="Discount Calculator — Free Online Tool | QuickTools"><meta property="og:description" content="Find sale prices and savings instantly."><meta property="og:type" content="website"><link rel="stylesheet" href="/assets/style.css"><script src="/assets/tools.js" defer></script></head><body>
-<header><div class="wrap"><a class="brand" href="/" style="color:#fff;text-decoration:none">QuickTools</a><div class="tag">Fast, free tools for everyday questions.</div></div></header>
-<nav><div class="wrap navin"><a href="/">All tools</a><a href="/?category=Calculator">Calculators</a><a href="/?category=Converter">Converters</a><a href="/?category=Time">Time</a><a href="/?category=Generator">Generators</a><a href="/?category=Text">Text</a><a href="/?category=Finance">Finance</a><a href="/?category=Home">Home</a></div></nav>
-<main><div class="wrap"><div class="ad">ADVERTISEMENT</div><article class="box"><a class="back" href="/">← All tools</a><h1>Discount Calculator</h1><div class="row">${field("price","Original price")} ${field("disc","Discount %")}</div><button class="btn" onclick="discount()">Calculate</button><div id="out" class="result"></div>
-<section class="prose" style="margin-top:28px;padding:0;border:0;box-shadow:none"><h2>About this discount calculator</h2><p>Find sale prices and savings instantly. Use QuickTools to get a quick result in your browser without creating an account.</p><h2>How to use it</h2><p>Enter the requested values, select any options, and choose the calculation or action button. Check the result before using it for an important financial, health, legal, or other consequential decision.</p></section></article></div></main>
-<footer><div class="wrap footgrid"><div><h3>QuickTools</h3><p>Free calculators, converters, generators and practical online utilities.</p></div>
-<div><h3>Popular</h3><a href="/tools/calculator.html">Calculator</a><a href="/tools/percentage.html">Percentage Calculator</a><a href="/tools/converter.html">Unit Converter</a><a href="/tools/age.html">Age Calculator</a></div>
-<div><h3>Information</h3><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></div></div>
-<div class="wrap legal">© 2026 QuickTools. Results are for convenience and should be independently verified when important.</div></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discount Calculator – Free Online Tool | QuickTools</title>
+<meta name="description" content="Calculate sale prices and savings with this free online discount calculator.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f7fb;color:#151827;font-family:Arial,sans-serif}
+header{background:linear-gradient(135deg,#151827,#39308a);color:white;padding:38px 20px}
+.wrap{max-width:1180px;margin:auto}
+header h1{margin:0;font-size:38px}
+header p{font-size:18px;margin:14px 0 0}
+nav{background:white;padding:14px 20px;border-bottom:1px solid #ddd}
+nav a{margin-right:22px;color:#332b82;text-decoration:none;font-weight:600}
+main{padding:40px 20px}
+.box{background:white;border-radius:18px;padding:35px;box-shadow:0 3px 18px #00000012}
+.back{color:#332b82;font-weight:bold}
+h1{font-size:42px}
+h2{font-size:30px}
+.field{margin:22px 0}
+label{display:block;font-weight:bold;margin-bottom:10px}
+input{width:100%;padding:18px;font-size:22px;border:2px solid #d7d9e5;border-radius:12px}
+button{margin-top:10px;padding:16px 28px;border:0;border-radius:12px;background:#5b45df;color:white;font-size:18px;font-weight:bold;cursor:pointer}
+#result{margin-top:25px;padding:22px;background:#f1f2fa;border-radius:12px;font-size:25px;font-weight:bold;min-height:70px}
+.prose{margin-top:40px}
+footer{padding:30px 20px;color:#667085}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap">
+<h1>QuickTools</h1>
+<p>Fast, free tools for everyday questions.</p>
+</div>
+</header>
+
+<nav>
+<div class="wrap">
+<a href="/">All tools</a>
+<a href="/?category=Calculator">Calculators</a>
+<a href="/?category=Converter">Converters</a>
+<a href="/?category=Time">Time</a>
+<a href="/?category=Generators">Generators</a>
+<a href="/?category=Text">Text</a>
+<a href="/?category=Finance">Finance</a>
+</div>
+</nav>
+
+<main>
+<div class="wrap">
+<div class="box">
+
+<a class="back" href="/">← All tools</a>
+
+<h1>Discount Calculator</h1>
+
+<p>Calculate the sale price and amount saved from a discount.</p>
+
+<div class="field">
+<label for="price">Original Price</label>
+<input id="price" type="number" value="100" min="0" step="any">
+</div>
+
+<div class="field">
+<label for="discount">Discount %</label>
+<input id="discount" type="number" value="20" min="0" max="100" step="any">
+</div>
+
+<button id="calculate">Calculate</button>
+
+<div id="result" aria-live="polite"></div>
+
+<div class="prose">
+<h2>About this discount calculator</h2>
+<p>Enter an original price and discount percentage to instantly calculate the amount saved and the final sale price.</p>
+</div>
+
+</div>
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+QuickTools © 2026 ·
+<a href="/about.html">About</a> ·
+<a href="/privacy.html">Privacy</a> ·
+<a href="/terms.html">Terms</a> ·
+<a href="/contact.html">Contact</a>
+</div>
+</footer>
+
+<script>
+function calculate() {
+  const price = Number(document.getElementById("price").value);
+  const discount = Number(document.getElementById("discount").value);
+  const result = document.getElementById("result");
+
+  if (!Number.isFinite(price) || !Number.isFinite(discount)) {
+    result.textContent = "Please enter both numbers.";
+    return;
+  }
+
+  if (price < 0 || discount < 0 || discount > 100) {
+    result.textContent = "Enter a valid price and a discount from 0% to 100%.";
+    return;
+  }
+
+  const savings = price * discount / 100;
+  const salePrice = price - savings;
+
+  result.innerHTML =
+    "You save $" + savings.toFixed(2) +
+    "<br>Sale price: $" + salePrice.toFixed(2);
+}
+
+document.getElementById("calculate").addEventListener("click", calculate);
+
+document.getElementById("price").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") calculate();
+});
+
+document.getElementById("discount").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") calculate();
+});
+
+calculate();
+</script>
+
+</body>
+</html>
