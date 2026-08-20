@@ -1,11 +1,153 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Compound Interest Calculator — Free Online Tool | QuickTools</title><meta name="description" content="Estimate growth with compound interest."><link rel="canonical" href="https://quicktools.net/tools/compound.html">
-<meta property="og:title" content="Compound Interest Calculator — Free Online Tool | QuickTools"><meta property="og:description" content="Estimate growth with compound interest."><meta property="og:type" content="website"><link rel="stylesheet" href="/assets/style.css"><script src="/assets/tools.js" defer></script></head><body>
-<header><div class="wrap"><a class="brand" href="/" style="color:#fff;text-decoration:none">QuickTools</a><div class="tag">Fast, free tools for everyday questions.</div></div></header>
-<nav><div class="wrap navin"><a href="/">All tools</a><a href="/?category=Calculator">Calculators</a><a href="/?category=Converter">Converters</a><a href="/?category=Time">Time</a><a href="/?category=Generator">Generators</a><a href="/?category=Text">Text</a><a href="/?category=Finance">Finance</a><a href="/?category=Home">Home</a></div></nav>
-<main><div class="wrap"><div class="ad">ADVERTISEMENT</div><article class="box"><a class="back" href="/">← All tools</a><h1>Compound Interest Calculator</h1><div class="row">${field("cp","Starting principal")} ${field("cr","Annual rate %")} ${field("cy","Years")} ${field("cn","Compounds/year")}</div><button class="btn" onclick="compound()">Calculate</button><div id="out" class="result"></div>
-<section class="prose" style="margin-top:28px;padding:0;border:0;box-shadow:none"><h2>About this compound interest calculator</h2><p>Estimate growth with compound interest. Use QuickTools to get a quick result in your browser without creating an account.</p><h2>How to use it</h2><p>Enter the requested values, select any options, and choose the calculation or action button. Check the result before using it for an important financial, health, legal, or other consequential decision.</p></section></article></div></main>
-<footer><div class="wrap footgrid"><div><h3>QuickTools</h3><p>Free calculators, converters, generators and practical online utilities.</p></div>
-<div><h3>Popular</h3><a href="/tools/calculator.html">Calculator</a><a href="/tools/percentage.html">Percentage Calculator</a><a href="/tools/converter.html">Unit Converter</a><a href="/tools/age.html">Age Calculator</a></div>
-<div><h3>Information</h3><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></div></div>
-<div class="wrap legal">© 2026 QuickTools. Results are for convenience and should be independently verified when important.</div></footer></body></html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compound Interest Calculator - Free Online Tool | QuikTools</title>
+<meta name="description" content="Calculate compound interest, total amount, and interest earned.">
+<meta property="og:title" content="Compound Interest Calculator - Free Online Tool | QuikTools">
+<meta property="og:description" content="Calculate compound interest and total growth over time.">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#151827;background:#f5f6fb}
+header{background:linear-gradient(120deg,#171a2d,#40328a);color:#fff;padding:42px 20px}
+.wrap{max-width:1100px;margin:auto}
+.brand{font-size:36px;font-weight:800;color:#fff;text-decoration:none}
+.tag{margin-top:12px;font-size:18px}
+nav{background:#fff;border-bottom:1px solid #ddd;padding:14px 20px}
+.navin{display:flex;gap:28px;flex-wrap:wrap}
+nav a{color:#29216f;text-decoration:none;font-weight:700}
+main{padding:34px 20px}
+.ad{border:1px dashed #ccd1df;border-radius:18px;padding:28px;text-align:center;color:#9aa2b5;margin-bottom:30px}
+.box{background:#fff;border-radius:22px;padding:34px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.back{color:#29216f;font-weight:700}
+h1{font-size:48px;margin:24px 0}
+p{font-size:19px;line-height:1.6}
+.row{margin:22px 0}
+label{display:block;font-size:18px;font-weight:700;margin-bottom:10px}
+input{width:100%;padding:18px;border:2px solid #d8dbe6;border-radius:14px;font-size:20px}
+button{margin-top:10px;padding:16px 30px;border:0;border-radius:14px;background:#6046d8;color:white;font-size:20px;font-weight:700;cursor:pointer}
+.result{margin-top:28px;padding:24px;background:#f1f2f9;border-radius:16px;font-size:22px;font-weight:700;line-height:1.7}
+.prose{margin-top:35px}
+footer{padding:30px 20px}
+.footgrid{display:flex;gap:40px;flex-wrap:wrap}
+footer a{color:#29216f;margin-right:18px}
+.legal{margin-top:25px;color:#777}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="wrap">
+<a class="brand" href="/">QuikTools</a>
+<div class="tag">Fast, free tools for everyday questions.</div>
+</div>
+</header>
+
+<nav>
+<div class="wrap navin">
+<a href="/">All tools</a>
+<a href="/?category=Calculator">Calculators</a>
+<a href="/?category=Converter">Converters</a>
+<a href="/?category=Time">Time</a>
+<a href="/?category=Generator">Generators</a>
+<a href="/?category=Text">Text</a>
+<a href="/?category=Finance">Finance</a>
+</div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<div class="ad">ADVERTISEMENT</div>
+
+<article class="box">
+<a class="back" href="/">← All tools</a>
+
+<h1>Compound Interest Calculator</h1>
+
+<p>Calculate compound interest, total amount, and interest earned over time.</p>
+
+<div class="row">
+<label for="principal">Initial Investment ($)</label>
+<input id="principal" type="number" value="1000" step="any">
+</div>
+
+<div class="row">
+<label for="rate">Annual Interest Rate (%)</label>
+<input id="rate" type="number" value="5" step="any">
+</div>
+
+<div class="row">
+<label for="years">Time (years)</label>
+<input id="years" type="number" value="10" step="any">
+</div>
+
+<div class="row">
+<label for="frequency">Compounding Frequency</label>
+<select id="frequency" style="width:100%;padding:18px;border:2px solid #d8dbe6;border-radius:14px;font-size:20px">
+<option value="1">Annually</option>
+<option value="2">Semi-annually</option>
+<option value="4">Quarterly</option>
+<option value="12" selected>Monthly</option>
+<option value="365">Daily</option>
+</select>
+</div>
+
+<button type="button" onclick="calculate()">Calculate</button>
+
+<div class="result" id="result">Total amount: $1,647.01<br>Interest earned: $647.01</div>
+
+<section class="prose">
+<h2>About this compound interest calculator</h2>
+<p>Use this calculator to estimate how an investment grows when interest is compounded over time.</p>
+</section>
+</article>
+
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="footgrid">
+<div><h3>QuikTools</h3><p>Free calculators, converters, generators and practical online utilities.</p></div>
+<div>
+<h3>Popular</h3>
+<a href="/tools/calculator.html">Calculator</a>
+<a href="/tools/percentage.html">Percentage Calculator</a>
+<a href="/tools/discount.html">Discount Calculator</a>
+</div>
+<div>
+<h3>Information</h3>
+<a href="/about.html">About</a>
+<a href="/privacy.html">Privacy</a>
+<a href="/terms.html">Terms</a>
+<a href="/contact.html">Contact</a>
+</div>
+</div>
+<div class="legal">© 2026 QuikTools. Results are for convenience and should be independently verified when important.</div>
+</div>
+</footer>
+
+<script>
+function calculate(){
+const p=parseFloat(document.getElementById("principal").value);
+const r=parseFloat(document.getElementById("rate").value);
+const t=parseFloat(document.getElementById("years").value);
+const n=parseInt(document.getElementById("frequency").value);
+
+if(!isFinite(p)||!isFinite(r)||!isFinite(t)||!isFinite(n)||p<0||t<0){
+document.getElementById("result").textContent="Please enter valid values.";
+return;
+}
+
+const amount=p*Math.pow(1+(r/100)/n,n*t);
+const interest=amount-p;
+
+document.getElementById("result").innerHTML=
+"Total amount: $"+amount.toFixed(2)+"<br>"+
+"Interest earned: $"+interest.toFixed(2);
+}
+</script>
+
+</body>
+</html>
