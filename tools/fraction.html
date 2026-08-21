@@ -1,11 +1,139 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fraction Calculator — Free Online Tool | QuickTools</title><meta name="description" content="Add, subtract, multiply and divide fractions."><link rel="canonical" href="https://quicktools.net/tools/fraction.html">
-<meta property="og:title" content="Fraction Calculator — Free Online Tool | QuickTools"><meta property="og:description" content="Add, subtract, multiply and divide fractions."><meta property="og:type" content="website"><link rel="stylesheet" href="/assets/style.css"><script src="/assets/tools.js" defer></script></head><body>
-<header><div class="wrap"><a class="brand" href="/" style="color:#fff;text-decoration:none">QuickTools</a><div class="tag">Fast, free tools for everyday questions.</div></div></header>
-<nav><div class="wrap navin"><a href="/">All tools</a><a href="/?category=Calculator">Calculators</a><a href="/?category=Converter">Converters</a><a href="/?category=Time">Time</a><a href="/?category=Generator">Generators</a><a href="/?category=Text">Text</a><a href="/?category=Finance">Finance</a><a href="/?category=Home">Home</a></div></nav>
-<main><div class="wrap"><div class="ad">ADVERTISEMENT</div><article class="box"><a class="back" href="/">← All tools</a><h1>Fraction Calculator</h1><div class="row"><input id="n1" aria-label="Numerator 1" placeholder="Numerator 1"> <input id="d1" aria-label="Denominator 1" placeholder="Denominator 1"> <input id="n2" aria-label="Numerator 2" placeholder="Numerator 2"> <input id="d2" aria-label="Denominator 2" placeholder="Denominator 2"></div><select id="op"><option>+</option><option>-</option><option>*</option><option>/</option></select><button class="btn" onclick="fraction()">Calculate</button><div id="out" class="result"></div>
-<section class="prose" style="margin-top:28px;padding:0;border:0;box-shadow:none"><h2>About this fraction calculator</h2><p>Add, subtract, multiply and divide fractions. Use QuickTools to get a quick result in your browser without creating an account.</p><h2>How to use it</h2><p>Enter the requested values, select any options, and choose the calculation or action button. Check the result before using it for an important financial, health, legal, or other consequential decision.</p></section></article></div></main>
-<footer><div class="wrap footgrid"><div><h3>QuickTools</h3><p>Free calculators, converters, generators and practical online utilities.</p></div>
-<div><h3>Popular</h3><a href="/tools/calculator.html">Calculator</a><a href="/tools/percentage.html">Percentage Calculator</a><a href="/tools/converter.html">Unit Converter</a><a href="/tools/age.html">Age Calculator</a></div>
-<div><h3>Information</h3><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></div></div>
-<div class="wrap legal">© 2026 QuickTools. Results are for convenience and should be independently verified when important.</div></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fraction Calculator – Free Online Tool | QuickTools</title>
+<meta name="description" content="Add, subtract, multiply and divide fractions with this free online fraction calculator.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+<header>
+<div class="wrap">
+<a class="brand" href="/" style="color:#fff;text-decoration:none">QuickTools</a>
+<div class="tag">Fast, free tools for everyday questions.</div>
+</div>
+</header>
+
+<nav>
+<div class="wrap navin">
+<a href="/">All tools</a>
+<a href="/?category=Calculator">Calculators</a>
+<a href="/?category=Converter">Converters</a>
+<a href="/?category=Time">Time</a>
+<a href="/?category=Generator">Generators</a>
+</div>
+</nav>
+
+<main>
+<div class="wrap">
+<div class="ad">ADVERTISEMENT</div>
+
+<article class="box">
+<a class="back" href="/">← All tools</a>
+
+<h1>Fraction Calculator</h1>
+
+<div class="row">
+<input id="n1" type="number" placeholder="Numerator 1">
+<input id="d1" type="number" placeholder="Denominator 1">
+<input id="n2" type="number" placeholder="Numerator 2">
+<input id="d2" type="number" placeholder="Denominator 2">
+</div>
+
+<div class="row">
+<select id="op" aria-label="Operation">
+<option value="+">+</option>
+<option value="-">−</option>
+<option value="*">×</option>
+<option value="/">÷</option>
+</select>
+</div>
+
+<button class="btn" type="button" onclick="calculate()">Calculate</button>
+
+<div id="result" class="result" aria-live="polite"></div>
+
+<section class="prose">
+<h2>About this fraction calculator</h2>
+<p>Add, subtract, multiply and divide fractions quickly. Enter the two fractions, choose an operation, and click Calculate.</p>
+</section>
+
+</article>
+</div>
+</main>
+
+<footer>
+<div class="wrap">
+QuickTools © 2026
+</div>
+</footer>
+
+<script>
+function gcd(a,b){
+  a=Math.abs(a);
+  b=Math.abs(b);
+  while(b){
+    let t=a%b;
+    a=b;
+    b=t;
+  }
+  return a || 1;
+}
+
+function simplify(n,d){
+  if(d===0) throw new Error("Denominator cannot be zero.");
+  if(d<0){ n=-n; d=-d; }
+  const g=gcd(n,d);
+  return [n/g,d/g];
+}
+
+function calculate(){
+  const n1=Number(document.getElementById("n1").value);
+  const d1=Number(document.getElementById("d1").value);
+  const n2=Number(document.getElementById("n2").value);
+  const d2=Number(document.getElementById("d2").value);
+  const op=document.getElementById("op").value;
+  const result=document.getElementById("result");
+
+  if(!Number.isFinite(n1)||!Number.isFinite(d1)||
+     !Number.isFinite(n2)||!Number.isFinite(d2)){
+    result.textContent="Please enter all four numbers.";
+    return;
+  }
+
+  if(d1===0||d2===0){
+    result.textContent="Denominators cannot be zero.";
+    return;
+  }
+
+  let n,d;
+
+  if(op==="+"){
+    n=n1*d2+n2*d1;
+    d=d1*d2;
+  }else if(op==="-"){
+    n=n1*d2-n2*d1;
+    d=d1*d2;
+  }else if(op==="*"){
+    n=n1*n2;
+    d=d1*d2;
+  }else{
+    if(n2===0){
+      result.textContent="Cannot divide by zero.";
+      return;
+    }
+    n=n1*d2;
+    d=d1*n2;
+  }
+
+  [n,d]=simplify(n,d);
+
+  result.innerHTML="<strong>Result: "+n+"/"+d+"</strong>"+
+    (d!==1 ? " &nbsp; = &nbsp; "+(n/d) : "");
+}
+</script>
+
+</body>
+</html>
